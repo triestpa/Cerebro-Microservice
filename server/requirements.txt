@@ -1,0 +1,9 @@
+numpy
+pillow
+matplotlib
+tensorflow
+keras
+flask
+requests
+h5py
+gunicorn
