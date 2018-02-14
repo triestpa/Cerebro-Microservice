@@ -22,7 +22,7 @@ class Classifier():
     def predict(self, img):
         """Predict the possible classes of the image"""
 
-        # Resize image to InceptionV3 expected size
+        # Resize image to InceptionV4 expected size
         if img.size != TARGET_SIZE:
             img = img.resize(TARGET_SIZE)
 
@@ -31,7 +31,7 @@ class Classifier():
         input = np.expand_dims(input, axis=0)
         input = preprocess_input(input)
 
-        # Predict classes
+        # Predict classes for input image
         preds = self.model.predict(input)
 
         # Format and return results
@@ -42,7 +42,10 @@ class Classifier():
     def predict_url(self, url):
         """Download image and predict classes"""
 
+        # Extract raw image data from URL stream
         img = Image.open(requests.get(url, stream=True).raw)
+
+        # Get predictions for the image
         return self.predict(img)
 
 if __name__ == '__main__':
